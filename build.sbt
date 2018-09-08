@@ -1,13 +1,20 @@
 name in ThisBuild := "dl-coursera"
 lazy val scalaTest = "org.scalatest" %% "scalatest" % "3.0.4" % Test
+lazy val nd4jVersion = "1.0.0-alpha"
+
 lazy val commonSettings = Seq(
   organization := "com.akkines.dl",
+  scalaVersion := "2.11.12",
   version := "0.1"
 )
 lazy val `dl-commons` = (project in file("dl-commons"))
   .settings(
+    commonSettings,
     libraryDependencies ++=Seq(
-      scalaTest
+      scalaTest,
+      "org.nd4j" % "nd4j-native-platform" % nd4jVersion,
+      "org.nd4j" % "nd4j-api" % "1.0.0-beta2",
+      "org.nd4j" %% "nd4s" % nd4jVersion
       )
   )
 lazy val `dl-coursera` = (project in file("."))
@@ -16,7 +23,6 @@ lazy val `dl-coursera` = (project in file("."))
 lazy val `dl-neuralnets` = (project in file("dl-neuralnets"))
 .settings(
     commonSettings,
-    scalaVersion := "2.12.4",
       libraryDependencies ++=Seq(
       scalaTest,
       "org.yaml" % "snakeyaml" % "1.21",
