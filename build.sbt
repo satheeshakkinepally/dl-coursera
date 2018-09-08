@@ -13,5 +13,15 @@ lazy val `dl-commons` = (project in file("dl-commons"))
 lazy val `dl-coursera` = (project in file("."))
   .settings(commonSettings)
   .aggregate(`dl-commons`,`dl-neuralnets`)
-lazy val `dl-neuralnets` = (project in file("dl-neuralnets"))  
+lazy val `dl-neuralnets` = (project in file("dl-neuralnets"))
+.settings(
+    commonSettings,
+    scalaVersion := "2.12.4",
+      libraryDependencies ++=Seq(
+      scalaTest,
+      "org.yaml" % "snakeyaml" % "1.21",
+      "com.google.code.gson" % "gson" % "2.8.0",
+      "org.slf4j" % "slf4j-api" % "1.7.25"
+      )
+  ).dependsOn(`dl-commons`)
 
