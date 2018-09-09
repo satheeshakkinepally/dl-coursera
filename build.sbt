@@ -1,6 +1,7 @@
 name in ThisBuild := "dl-coursera"
 lazy val scalaTest = "org.scalatest" %% "scalatest" % "3.0.4" % Test
-lazy val nd4jVersion = "1.0.0-alpha"
+//lazy val nd4jVersion = "1.0.0-alpha"
+lazy val nd4jVersion = "0.9.1"
 
 lazy val commonSettings = Seq(
   organization := "com.akkines.dl",
@@ -13,7 +14,7 @@ lazy val `dl-commons` = (project in file("dl-commons"))
     libraryDependencies ++=Seq(
       scalaTest,
       "org.nd4j" % "nd4j-native-platform" % nd4jVersion,
-      "org.nd4j" % "nd4j-api" % "1.0.0-beta2",
+      "org.nd4j" % "nd4j-api" % nd4jVersion,
       "org.nd4j" %% "nd4s" % nd4jVersion
       )
   )
