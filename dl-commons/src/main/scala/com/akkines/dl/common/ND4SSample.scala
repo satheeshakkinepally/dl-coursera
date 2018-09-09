@@ -1,5 +1,8 @@
+package com.akkines.dl.common
+
 import org.nd4j.linalg.factory.Nd4j
 import org.nd4s.Implicits._
+
 /**
   * Created by Satheesh Akkinepally on 9/8/18.
   */
