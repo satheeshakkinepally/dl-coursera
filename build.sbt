@@ -1,7 +1,7 @@
 name in ThisBuild := "dl-coursera"
 lazy val scalaTest = "org.scalatest" %% "scalatest" % "3.0.4" % Test
-//lazy val nd4jVersion = "1.0.0-alpha"
-lazy val nd4jVersion = "0.9.1"
+lazy val nd4jVersion = "1.0.0-alpha"
+//lazy val nd4jVersion = "0.9.1"
 
 lazy val commonSettings = Seq(
   organization := "com.akkines.dl",
