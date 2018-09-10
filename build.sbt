@@ -20,7 +20,9 @@ lazy val `dl-commons` = (project in file("dl-commons"))
   )
 lazy val `dl-coursera` = (project in file("."))
   .settings(commonSettings)
+  .dependsOn(`dl-commons`,`dl-neuralnets`)
   .aggregate(`dl-commons`,`dl-neuralnets`)
+
 lazy val `dl-neuralnets` = (project in file("dl-neuralnets"))
 .settings(
     commonSettings,
