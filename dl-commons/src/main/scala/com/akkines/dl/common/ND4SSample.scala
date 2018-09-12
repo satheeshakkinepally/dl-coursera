@@ -1,5 +1,6 @@
 package com.akkines.dl.common
 
+import org.nd4j.linalg.api.ndarray.INDArray
 import org.nd4j.linalg.factory.Nd4j
 import org.nd4s.Implicits._
 import org.nd4j.linalg.ops.transforms.Transforms._
@@ -35,5 +36,11 @@ object ND4SSample {
     println(s"***original nd is \n$nd")
     val ndv = sigmoid(nd,true)
     println(s"***applying sigmoid, transformed matrix is \n$ndv")
+
+    val n = Nd4j.linspace(1, 10000000, 10000000)
+    println(n.shape()(1))
+    println(n)
+    println("MMUL:" + n.mmul(n.transpose))
+
   }
 }
