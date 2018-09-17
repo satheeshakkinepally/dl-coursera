@@ -113,14 +113,20 @@ object ImageRecognitionExercise{
     Tuple2(Nd4j.zeros(dim1,dim2),0.0d)
   }
 
-  def propogate(w:INDArray,b:Double,xValues:INDArray,yValues:INDArray):GradientsAndCost = {
+  private def activationFunction(wtxplusb: INDArray):INDArray = {
+    sigmoid(wtxplusb)
+//    tanh(wtxplusb)
+//    relu(wtxplusb)
+  }
+
+  def propogate(w:INDArray, b:Double, xValues:INDArray, yValues:INDArray):GradientsAndCost = {
     val m = xValues.shape()(1).toDouble
 //    println(s"shape of w.T:${w.transpose().shape().mkString(seperator)}")
 //    println(s"shape of xValues:${xValues.shape().mkString(seperator)}")
     val wtxplusb = w.transpose().dot(xValues)+b
 //    println(wtxplusb)
 //    println(s"wtxplusb info ${wtxplusb.length()} and shape:${wtxplusb.shape().mkString(seperator)}")
-    val activation = sigmoid(wtxplusb)
+    val activation = activationFunction(wtxplusb)
     val ones = Nd4j.ones(activation.shape()(0), activation.shape()(1))
     val loss = yValues*log(activation) + (ones - yValues)*log(ones - activation)
     val cost = -(1/m)* loss.sumNumber().doubleValue()
@@ -157,7 +163,7 @@ object ImageRecognitionExercise{
     val m = xValues.shape()(1)
     val wprime = w.reshape(xValues.shape()(0),1)
     val yPredictions = Nd4j.zeros(1,m)
-    val activation = sigmoid(w.transpose().dot(xValues) + b)
+    val activation = activationFunction(w.transpose().dot(xValues) + b)
     for(i <- 0 until activation.shape()(1)){
       if(activation(0,i) < 0.5)
         yPredictions(0,i) = 0.0
